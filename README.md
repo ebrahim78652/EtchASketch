@@ -1,0 +1,7 @@
+# EtchASketch
+baord to draw whatever you like!
+
+1) Enter the size of the grid.
+2) Press Enter.
+3) hover your mouse on the grid.
+4) You can draw whatever you want!
