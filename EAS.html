@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+
+</head>
+
+<body>
+
+
+
+
+    <button class="clearBtn">CLEAR</button><br /><br /><br />
+    <input value="5" ; class="textbox" type="text" />.
+    <div class="wrapperDiv">
+
+
+    </div>
+</body>
+
+<script>
+    let drawingBoardSize = 5;
+
+
+
+
+
+
+    //the very first method to run is: reading the number in the textbox, to find out the size of the grid;
+    setDrawingBoardSize = function () {
+        console.log(this.value);
+        drawingBoardSize = this.value;
+    }
+
+    //first we made the divs for the columns;
+    const wrapperDiv = document.querySelector(".wrapperDiv");
+    for (let i = 0; i < drawingBoardSize; i++) {
+        const div = document.createElement("div");
+        div.classList.add("column")
+        wrapperDiv.appendChild(div)
+    }
+
+    //function to add the rows
+    addRows = function (columnDiv) {
+        for (let i = 0; i < drawingBoardSize; i++) {
+            const div = document.createElement("div");
+            div.classList.add("row");
+            columnDiv.appendChild(div);
+        }
+    }
+
+
+    //now we will make the divs for the rows.;
+    const columnDivs = document.querySelectorAll(".column");
+    columnDivs.forEach(div => addRows(div));
+
+
+    const textbox = document.querySelector(".textbox");
+    textbox.addEventListener("keypress", setDrawingBoardSize)
+
+
+
+    //function to add the listener for hover on each and every row div;
+    addHoverListener = function (e) {
+        this.classList.add("fillWithColor");
+    }
+
+    //function to delete/clear everything;
+
+    deleteAllTheMarkings = function () {
+        const rowDivs = document.querySelectorAll(".row");
+        rowDivs.forEach(div => div.classList.remove("fillWithColor"));
+
+    }
+
+
+
+    //now for all the divs that have the class "row", we will have to add a listener so that they change color when we hover on them.;
+    //for that we can make an additional class and add this class to the row divs;
+
+    const rowDivs = document.querySelectorAll(".row");
+    rowDivs.forEach(div => div.addEventListener("mouseover", addHoverListener));
+
+    //now add a listener to the button
+    const clearBtn = document.querySelector(".clearBtn");
+    clearBtn.addEventListener("click", deleteAllTheMarkings);
+
+
+
+
+
+</script>
+
+</html>
